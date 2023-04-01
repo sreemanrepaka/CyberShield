@@ -8,12 +8,73 @@
     <title>Document</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="fetch.js" type="module"></script>
+    <style>
+         body {
+        font-family: Arial, sans-serif;
+        background-color: silver;
+        padding: 20px;
+      }
+      input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        width: 250px;
+      }
+      button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        
+        margin-top: 15px;
+
+
+      }
+
+      button:hover{
+        background-color: darkgreen;
+      }
+
+
+      #btn_area{
+        /* display: flex; */
+        text-align: center;
+        
+            
+        }
+      #result {
+        margin-top: 20px;
+        font-size: 15px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+      }
+
+      img{
+        width: 40px;
+      }
+      .logo{
+        text-align: center;
+      }
+    </style>
 </head>
 <body>
     <div> 
-        <input type="text" id="text">
-        <button id="btn" >submit</button>
-        <div id="result">result will be here</div>
+        <div class="logo">
+            <img src="/cybershield_logo2.png" alt="">
+            <h1>CyberShield</h1>
+        </div>
+        
+        <input type="text" id="text" autocomplete="off" >
+        <div id="btn_area">
+            <button id="btn" >Check</button>
+        </div>
+        
+        <div id="result">To check for cyberbullying, enter text in the text box above!</div>
 
 
         

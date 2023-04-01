@@ -15,7 +15,17 @@
 
 
 
+
+
     "permissions":["activeTab"],
+
+    "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["fetch.js"]
+        }
+      ],
+
     "content_security_policy": "script-src 'self' https://unpkg.com/ ; object-src 'self' "
 
 }
