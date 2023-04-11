@@ -60,6 +60,38 @@
       .logo{
         text-align: center;
       }
+
+      #stats-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Helvetica Neue', sans-serif;
+  visibility: hidden;
+}
+
+.stats-item {
+  text-align: center;
+}
+
+.stats-item h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+}
+
+.stats-item p {
+  font-size: 2.5em;
+  font-weight: 300;
+  margin: 0;
+}
+
+.bullying{
+  color: red;
+}
+
+.not-bullying{
+  color: green;
+}
     </style>
 </head>
 <body>
@@ -71,10 +103,35 @@
         
         <input type="text" id="text" autocomplete="off" >
         <div id="btn_area">
-            <button id="btn" >Check</button>
+            <button id="btn"  >Check</button><br>
+            <button id="btn2" >Check for all tweets</button>
         </div>
         
         <div id="result">To check for cyberbullying, enter text in the text box above!</div>
+
+        <div id="stats-container">
+          <div class="stats-item">
+            <h2>Total</h2>
+            <p id="total"></p>
+          </div>
+          <div class="stats-item">
+            <div class="bullying">
+              <h2>Bullying</h2>
+              <p id="bullying"></p>
+            </div>
+           
+          </div>
+
+          <div class="stats-item">
+            <div class="not-bullying">
+              <h2>Not Bullying</h2>
+            <p id="not-bullying"></p>
+            </div>
+            
+          </div>
+        </div>
+
+
 
 
         
