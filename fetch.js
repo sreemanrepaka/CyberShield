@@ -1,4 +1,5 @@
 
+let lst=[]
 document.getElementById("btn").addEventListener("click", function() {
   let tweet=document.getElementById('text').value;
   if (tweet.length > 0) {
@@ -6,6 +7,10 @@ document.getElementById("btn").addEventListener("click", function() {
     text: tweet
     
   })
+
+
+    
+
     .then(
         (response)=>{
           if (response.data!=="not bullying"){
@@ -36,6 +41,7 @@ document.getElementById("btn").addEventListener("click", function() {
 
 
 
+
 document.getElementById("btn2").addEventListener("click", function() {
 
   let bully=0;
@@ -44,13 +50,15 @@ document.getElementById("btn2").addEventListener("click", function() {
 
 
 axios.get('http://127.0.0.1:5000/predict')
+
   .then(function (response) {
     if (response.data.length > 0) {
+      
+      lst=response.data
       for (let index = 0; index < response.data.length; index++) {
         total++;
         if (response.data[index]=="not bullying"){
           non_bully++;
-
 
         }
         else{
@@ -58,9 +66,12 @@ axios.get('http://127.0.0.1:5000/predict')
         }
  
       }
-      document.getElementById('result').innerHTML =""
+      document.getElementById('result').innerHTML =`<h3>Tweet Statistics</h3> <br> Click for more info!`
+
+
       
-      document.getElementById('stats-container').style.visibility="visible";
+      document.getElementById('loader').style.display="none"
+      document.getElementById('stats-container').style.display="flex";
       document.getElementById('total').innerHTML =total;
       document.getElementById('bullying').innerHTML =bully;
       document.getElementById('not-bullying').innerHTML =non_bully;
@@ -71,12 +82,16 @@ axios.get('http://127.0.0.1:5000/predict')
 
    
   })
-  .catch(error => console.log(error))
 
+  .catch(
+    error => console.log(error)
+  )
+  
+  document.getElementById('input_area').style.display="none"
 
-  setTimeout(() => {
-    document.getElementById('result').innerHTML = "Scraping tweets...";
-  }, 1000);
+  document.getElementById('loader').style.display="block"
+  
+  document.getElementById('result').innerHTML = "Scraping tweets...";
 
   setTimeout(() => {
     document.getElementById('result').innerHTML = "Calling API...";
@@ -88,3 +103,52 @@ axios.get('http://127.0.0.1:5000/predict')
 
   
 });
+
+document.getElementById("stats-container").addEventListener("click", function() {
+axios.get('http://127.0.0.1:5000/tweets')
+
+
+  .then(function (response) {
+    let res=[]
+    if (response.data.length > 0) {
+
+
+
+          
+      res = response.data.reduce((obj,key,index) => {
+        obj[key]=lst[index];
+        return obj;
+      },{});
+      
+      
+      let output = '';
+
+      
+
+  Object.entries(res).forEach(([key, value]) => {
+    if (typeof value === 'string' && !value.includes('not bullying')) {
+      output += `${key}: ${value}<br>`;
+    }
+  });
+
+
+
+
+  document.getElementById('tweets').innerHTML =`<h4>Tweets classified as bullying:</h4> ${output}`;
+
+
+
+      
+    
+    }
+
+
+  })
+  
+ .catch(
+    error => console.log(error)
+  )
+ })
+
+
+ 

@@ -7,12 +7,16 @@
    
     <title>Document</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="recorder.js"></script>
     <script src="fetch.js" type="module"></script>
     <style>
          body {
         font-family: Arial, sans-serif;
-        background-color: silver;
+        /* background-color: #0F4C75; */
+        background-color: #112D4E;
         padding: 20px;
+        width: 270px;
+        color: white !important;
       }
       input[type="text"] {
         padding: 10px;
@@ -66,11 +70,17 @@
   justify-content: space-between;
   align-items: center;
   font-family: 'Helvetica Neue', sans-serif;
-  visibility: hidden;
+  display: none; 
+  border-radius: 3px;
+  padding: 5px;
 }
 
 .stats-item {
   text-align: center;
+  
+  padding: 3px 3px;
+  
+ 
 }
 
 .stats-item h2 {
@@ -85,13 +95,43 @@
   margin: 0;
 }
 
+#stats-container:hover{
+  background-color:#2563a9;
+  cursor: pointer;
+}
+
 .bullying{
   color: red;
 }
 
 .not-bullying{
-  color: green;
+  color: lightgreen;
 }
+
+#loader {
+  margin: 0 auto;
+  border: 7px solid #f3f3f3; /* Light grey */
+  border-top: 7px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+  display: none;
+}
+
+#tweets{
+  margin-top: 10px;
+  font-size: 15px;
+  
+  padding: 5px;
+  border-radius: 5px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
     </style>
 </head>
 <body>
@@ -101,21 +141,32 @@
             <h1>CyberShield™</h1>
         </div>
         
-        <input type="text" id="text" autocomplete="off" >
-        <div id="btn_area">
-            <button id="btn"  >Check</button><br>
-            <button id="btn2" >Check for all tweets</button>
+        <div id="input_area">
+          <input type="text" id="text" autocomplete="off" >
+       
+          <div id="btn_area">
+          <button id="btn"  >Check</button><br>
+         
+          <button id="btn2" >Check for all tweets</button>
+
         </div>
         
+            
+        </div>
+        <br>
+        <div id="loader"></div>
         <div id="result">To check for cyberbullying, enter text in the text box above!</div>
+       
+
+        
 
         <div id="stats-container">
-          <div class="stats-item">
+          <div class="stats-item" >
             <h2>Total</h2>
             <p id="total"></p>
           </div>
           <div class="stats-item">
-            <div class="bullying">
+            <div class="bullying" >
               <h2>Bullying</h2>
               <p id="bullying"></p>
             </div>
@@ -131,8 +182,7 @@
           </div>
         </div>
 
-
-
+        <div id="tweets"></div>
 
         
     </div>
