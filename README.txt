@@ -15,3 +15,10 @@ Added another button to extension such that when the button is clicked, get requ
 Results are displayed as soon as the promise is resolved. No of total tweets, cyberbullying tweets and not cyberbullying tweets are counted and displayed accordingly.
 
 if the user clicks on the stats, the tweets that are considered to be offensive are displayed along with the category of cyberbullying
+this is achieved through another endpoint of the api that returns a list of the tweets.
+
+so all endpoints:-
+/predict (get, post)
+/tweets (get)
+/transcribe
+/extract_text

@@ -14,9 +14,6 @@
     },
 
 
-
-
-
     "permissions":["activeTab"],
 
     "content_scripts": [
